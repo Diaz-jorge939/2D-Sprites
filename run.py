@@ -6,21 +6,15 @@ import os
 # Initialize Pygame
 pygame.init()
 
-sprite_data = {}
+#getting the screen width and height of device currently running the program
+device_screen = pygame.display.Info()
+SCREEN_WIDTH, SCREEN_HEIGHT = device_screen.current_w-100, device_screen.current_h-100
 
-with open('2D sprites/Penguins/animationData.json', 'r') as file:
-    sprite_data = json.loads(file.read())
-
-
-
-# Define the window size
-SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
-
-# Create the Pygame window
-SCREEN = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT), pygame.RESIZABLE)
+# Create the screen
+SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 
-IMG_PATH = '2D sprites/Penguins/TenderBud'
+IMG_PATH = 'Penguins/TenderBud'
 
 SPRITES = {
     "walk_NE" : [pygame.transform.scale(pygame.image.load(IMG_PATH + '/walk_NE/0.png'), (50,50)), 
@@ -86,7 +80,7 @@ SCREEN.blit(img, (0, 0))
 pygame.display.update()
 
 class penguin():
-    WALK_DISTANCE = 5
+    WALK_DISTANCE = 6
 
     def __init__(self):
         self.hitbox_x = 50
@@ -161,7 +155,7 @@ def main():
 
     pengy = penguin()
     clock = pygame.time.Clock()
-    FPS = 20
+    FPS = 25
     run = True 
     while run:
         
